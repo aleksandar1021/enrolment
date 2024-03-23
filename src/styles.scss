@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width:560px){
+    .content-login{   
+        width: 92% !important;
+        margin: 0px auto !important;            
+        #login-form{
+            div, button{
+              width: 90% !important;
+            }
+        }
+    }
+  }
