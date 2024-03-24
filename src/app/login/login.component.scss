@@ -76,7 +76,7 @@ $gray : #F5F7F9;
         @include display-flex(center, row);
         width: 100% !important;
         img{
-            width: 150px !important;
+            width: 150px;
         }
     }
 }

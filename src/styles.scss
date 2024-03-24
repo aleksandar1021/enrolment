@@ -13,5 +13,19 @@
               width: 90% !important;
             }
         }
+        >:nth-child(1){
+          img{
+              width: 100px !important; 
+          }
+  
+      }
     }
+    .login-footer{
+      height: 40px !important;
+      .login-logo{
+          img{
+              width: 100px !important;
+          }
+      }
+  }
   }
