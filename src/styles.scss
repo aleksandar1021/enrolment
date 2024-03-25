@@ -4,28 +4,4 @@
     box-sizing: border-box;
   }
 
-  @media screen and (max-width:560px){
-    .content-login{   
-        width: 92% !important;
-        margin: 0px auto !important;            
-        #login-form{
-            div, button{
-              width: 90% !important;
-            }
-        }
-        >:nth-child(1){
-          img{
-              width: 100px !important; 
-          }
   
-      }
-    }
-    .login-footer{
-      height: 40px !important;
-      .login-logo{
-          img{
-              width: 100px !important;
-          }
-      }
-  }
-  }
