@@ -12,18 +12,22 @@
                 <div></div>
             </div>
 
-            <form action="" method="POST" id="login-form">
+            <form [formGroup]="loginForm" id="login-form" (ngSubmit)="loginSumbited()">
                 <h1>Welcome back</h1>
                 <p>Sign in to your account</p>
 
                 <div class="login-email">
                     <img src="../../assets/images/user.svg"/>
-                    <input type="text" name="email" placeholder="Username or email"/>
+                    <input formControlName="email" type="text" name="email" placeholder="Username or email"/>
                 </div>
+                <span class="error-text" *ngIf="Email.errors?.['email']">Email is not in good format</span>
+         
                 <div class="login-password">
                     <img src="../../assets/images/lock.svg"/>
-                    <input type="password" name="password" placeholder="Password"/>
+                    <input formControlName="password" type="password" name="password" placeholder="Password"/>
                 </div>
+                <span class="error-text" *ngIf="Password.errors?.['minlength']">The password must contain at least 8 characters</span>
+                <span class="error-text">{{message}}</span>
 
                 <button type="submit" class="login-button">Login</button>
             </form>
