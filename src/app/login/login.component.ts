@@ -4,6 +4,9 @@ import { FormControl, FormGroup , ReactiveFormsModule, Validators} from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
+import jwt_token, { JwtPayload, jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
+
 @Component({
   
   selector: 'app-login',
@@ -21,7 +24,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit{
   message: String = ''
-  constructor(private titleService: Title, private authService: AuthService) { 
+  constructor(private titleService: Title, private authService: AuthService, private router: Router) { 
     this.titleService.setTitle('Login');
   }
   ngOnInit(): void {}
@@ -41,6 +44,7 @@ export class LoginComponent implements OnInit{
     //   })
 
     if(this.loginForm.valid){
+      
       this.authService.Login(
         {
           email: this.Email.value, password: this.Password.value
@@ -50,21 +54,21 @@ export class LoginComponent implements OnInit{
             this.message = response.message;
           }
           else{
-            console.log(response.token)
-            this.setToken(response.token);
-          }
-          
-          
-
-          if(response.message == "JWT"){
-            location.href = "/home";
+            this.SetToken(String(response.token));
+            this.router.navigateByUrl("home");
           }
         })
     }
   }
 
-  setToken(token: string){
-    localStorage.setItem("jwtToken", token);
+  CurrentUser(){
+    let token = localStorage.getItem("token");
+    let decodedToken = token != null ? jwtDecode(token) : null
+    return JSON.parse((JSON.stringify(decodedToken)))
+  }
+
+  SetToken(token: string){
+    localStorage.setItem("token", token);
   }
 
   get Email() : FormControl{
