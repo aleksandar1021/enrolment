@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interface/user.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { development } from '../environments/development';
+import { development } from '../../environments/development';
 
 
 @Injectable({
