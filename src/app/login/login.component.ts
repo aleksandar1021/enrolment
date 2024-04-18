@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit{
 
   })
 
-  loginSumbited(){
-    // this.authService.AddUser(
+  loginSumbited() : void{
+    // this.authService.addUser(
     //   {
     //     Name: "Aleksandar", Lastname: "Kandic", Email: "aleksa_kandic@yahoo.com", Password: "lozinka123"
     //   }).subscribe(response => {
@@ -45,29 +45,30 @@ export class LoginComponent implements OnInit{
 
     if(this.loginForm.valid){
       
-      this.authService.Login(
+      this.authService.login(
         {
-          email: this.Email.value, password: this.Password.value
+          email: this.Email.value, 
+          password: this.Password.value
         }).subscribe((response: any) => {
           
           if(response.status !== "logged"){
             this.message = response.message;
           }
           else{
-            this.SetToken(String(response.token));
+            this.setToken(String(response.token));
             this.router.navigateByUrl("home");
           }
         })
     }
   }
 
-  CurrentUser(){
+  currentUser() : any{
     let token = localStorage.getItem("token");
-    let decodedToken = token != null ? jwtDecode(token) : null
+    let decodedToken : any = token != null ? jwtDecode(token) : null
     return JSON.parse((JSON.stringify(decodedToken)))
   }
 
-  SetToken(token: string){
+  setToken(token: string) : void{
     localStorage.setItem("token", token);
   }
 
