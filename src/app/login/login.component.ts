@@ -19,7 +19,6 @@ import { AuthGuard } from '../auth.guard';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers : [
-    AuthGuard,
     AuthService
   ]
 })

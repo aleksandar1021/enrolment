@@ -3,18 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../interface/user.interface';
 import { development } from '../../environments/development';
 import jwt_token, { JwtPayload, jwtDecode } from 'jwt-decode';
+import { routes } from '../app.routes';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   currentUser() : any{
-    let token = localStorage.getItem("token");
-    let decodedToken = token != null ? jwtDecode(token) : null
-    return decodedToken;
+    try{
+      let token = localStorage.getItem("token");
+      let decodedToken = token != null ? jwtDecode(token) : null
+      return decodedToken;
+    }catch(e){
+      return null
+    }
   }
 
   addUser(user: User){
@@ -29,9 +35,15 @@ export class AuthService {
     });
   }
 
-  isLogged() : Boolean{
+  logout() : void{
+    localStorage.removeItem("token");
+    this.router.navigateByUrl("login")
+  }
+
+  isLogged() : boolean {
     let user = this.currentUser();
-    return user.exp > Date.now();
-    
+    if(user == null)
+      return false;
+    return user.exp < Date.now();
   }
 }
