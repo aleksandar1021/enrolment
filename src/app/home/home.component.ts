@@ -4,11 +4,9 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    HttpClientModule
-  ],
+  imports: [HttpClientModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   constructor(private authService: AuthService) {}

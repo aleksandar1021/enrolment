@@ -1,4 +1,4 @@
 export const development = {
-    production: false,
-    apiUrl: 'https://localhost:44381/api/'
+  production: false,
+  apiUrl: 'http://localhost:5001/api/',
 };
